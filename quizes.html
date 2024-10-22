@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizes</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="nav-bar">
+            <div class="logo">
+                <h1> <a href="index.html">MindFulConnect</a></h1>
+            </div>
+            <div class="nav-items">
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="#">Support Forum</a></li>
+                    <li><a href="conseling.html">Counseling</a></li>
+                    <li><a href="quizes.html">Mental Health Quizzes</a></li>
+                </ul>
+            </div>
+            <div style="position: relative">
+                <button type="submit" class="search-btn" style="position: absolute">
+                    <img src="Images/search-icon-dark.png" alt="Search" class="search-icon" />
+                </button>
+                <input type="text" placeholder="Search here..." class="search-input" />
+            </div>
+        </nav>
+    </header>
+
+    <section class="assess">
+        <div>
+            <h4> Assess Your Mental Health</h4>
+        </div>
+    </section>
+    <div class="Quiz">
+        <section class="Quiz_categories container">
+            <div class="feature-resources__left">Quiz Categories</div>
+            <div class="feature-resources__right">
+                <div class="feature-container">
+                    <div class="quiz-card">
+                        <div>
+                            <img src="Images/aa.jpeg" alt="" />
+                        </div>
+                        <h4>Anxiety Assessment</h4>
+                        <p>Evaluate your anxiety level</p>
+                    </div>
+                    <div class="quiz-card">
+                        <div>
+                            <img src="Images/da.jpeg" alt="" />
+                        </div>
+                        <h4>Depression Self-Test</h4>
+                        <p>Assesss your feeling of depression</p>
+                    </div>
+                </div>
+                <div class="quiz-card">
+                    <div>
+                        <img src="Images/mq.jpeg" alt="" />
+                    </div>
+                    <h4>Mindfulness Quiz</h4>
+                    <p>Discover your mindfulness practices.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <section class="Quiz_progress container">
+        <h3>Quiz Progess</h3>
+        <div class="result">
+            <div>
+                <h4>Question Completed</h4>
+                <p>1</p>
+            </div>
+            <div>
+                <h4>Total Question</h4>
+                <p> 5 </p>
+            </div>
+        </div>
+
+        <div class="quiz-container">
+            <div class="quiz-title">Quiz</div>
+            <div class="quiz-items">
+                <div class="quiz-question">Question 1: How often do you feel anxious?</div>
+                <div class="option-buttons">
+                    <button>Rarely</button>
+                    <button>Sometimes</button>
+                    <button>Often</button>
+                    <button>Always</button>
+                </div>
+                <button class="next-button">Next</button>
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+    <section class="Quizes container">
+        <h3>Results</h3><br>
+        <p>Your personalized results.</p>
+    </section>
+
+    <section class="Recommendation container">
+        <div>
+            <h2>Recommendation</h2>
+        </div>
+        <div class="feature-resources__right">
+            <div class="feature-container">
+                <div class="quiz-card">
+                    <div>
+                        <img src="Images/mindfulness.png" alt="">
+                    </div>
+                    <h4>Mental Health Resources</h4>
+                    <p>Access resources for support</p>
+                </div>
+                <div class="quiz-card">
+                    <div>
+                        <img src="Images/articles.png" alt="">
+                    </div>
+                    <h4>Mental Health Resources</h4>
+                    <p>Access resources for support</p>
+                </div>
+    </section>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const questions = [
+                "How often do you feel anxious?",
+                "How well do you cope with stress?",
+                "How often do you practice mindfulness?",
+                "Do you seek help when feeling overwhelmed?",
+                "Do you often feel sad or hopeless?"
+            ];
+
+            const options = [
+                ["Rarely", "Sometimes", "Often", "Always"],
+                ["Very Well", "Moderately Well", "Not so well", "Not at all"],
+                ["Never", "Rarely", "Sometimes", "Frequently"],
+                ["Always", "Sometimes", "Rarely", "Never"],
+                ["Rarely", "Sometimes", "Often", "Always"]
+            ];
+
+            let currentQuestion = 0;
+            let selectedOption = null;
+            const quizContainer = document.querySelector('.quiz-container');
+            const questionElem = document.querySelector('.quiz-question');
+            const optionButtons = document.querySelectorAll('.option-buttons button');
+            const nextButton = document.querySelector('.next-button');
+
+            function loadQuestion() {
+                questionElem.textContent = `Question ${currentQuestion + 1}: ${questions[currentQuestion]}`;
+                optionButtons.forEach((button, index) => {
+                    button.textContent = options[currentQuestion][index];
+                    button.classList.remove('selected');
+                });
+                selectedOption = null;
+            }
+
+            optionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    optionButtons.forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                    selectedOption = button.textContent;
+                });
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (selectedOption) {
+                    currentQuestion++;
+                    if (currentQuestion < questions.length) {
+                        loadQuestion();
+                    } else {
+                        alert('Quiz Completed!');
+                    }
+                } else {
+                    alert('Please select an option before proceeding.');
+                }
+            });
+
+            loadQuestion();
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-btn">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="input-container">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-container">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <i class="fas fa-eye-slash" id="toggle-password"></i>
+                </div>
+                <div class="options">
+                    <label>
+                        <input type="checkbox" name="remember"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit">Login Now</button>
+                <p class="signup">Don’t have an account? <a href="#">Signup</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script> // Close button functionality
+      document.getElementById('close-btn').addEventListener('click', function() {
+          document.getElementById('login-modal').style.display = 'none';
+      });
+      
+      // Toggle password visibility
+      const togglePassword = document.getElementById('toggle-password');
+      const passwordField = document.getElementById('password');
+      
+      togglePassword.addEventListener('click', function () {
+          const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+          passwordField.setAttribute('type', type);
+          this.classList.toggle('fa-eye');
+          this.classList.toggle('fa-eye-slash');
+      });
+      
+      // Form submission alert (just for demonstration)
+      document.getElementById('login-form').addEventListener('submit', function(event) {
+          event.preventDefault();
+          alert('Logged in successfully!');
+      });
+      </script>
+</body>
+</html>
